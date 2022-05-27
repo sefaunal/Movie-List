@@ -30,15 +30,16 @@ For my case movielistdb is my MySql Schema name, you can leave it as it is or ch
 
 ![image](https://user-images.githubusercontent.com/83312431/170697679-e37a1481-c9b5-4c6b-89f1-5554e9fa34d3.png)
 
-On the first run of this project while there is no user entry on the database an Admin account will be created automatically. The credentials are as follows:
+On the first run of this project
++ Required tables will be created automatically by Hibernate/JPA Technology so you dont need to create any table manually
++ Also since there is no user on the database an Admin account will be created automatically. The credentials are as follows:
+  - Mail:     sefa@admin.com
+  - Password: 123456
+    - You can change these credentials by editing MovielistApplication.java file
 
-Mail:     sefa@admin.com
-
-Password: 123456
-
-You can change this by editing MovielistApplication.java file and you can add new admin account(s) by changing its role from MySql Workbench after you create
-an account from register page
-
+If you like to add more Admin accounts, you need to:
++ Create an account from the webpage
++ Change role to 'ADMIN' on user table with using MySQL Workbench
 
 #### Run With IDE (e.g. IntelliJ)
 Just Run the project from IDE and type http://localhost:8080/ to your browser once the application is up and running
