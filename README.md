@@ -30,7 +30,7 @@ For my case movielistdb is my MySql Schema name, you can leave it as it is or ch
 
 ![image](https://user-images.githubusercontent.com/83312431/170697679-e37a1481-c9b5-4c6b-89f1-5554e9fa34d3.png)
 
-On the first run of this project
+###### On The First Run of this Project
 + Required tables will be created automatically by Hibernate/JPA Technology so you dont need to create any table manually
 + Also since there is no user on the database an Admin account will be created automatically. The credentials are as follows:
   - Mail:     sefa@admin.com
