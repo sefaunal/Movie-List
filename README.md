@@ -40,11 +40,21 @@ You can change this by editing MovielistApplication.java file and you can add ne
 an account from register page
 
 
-#### Run With IDE (e.g. Intellij)
+#### Run With IDE (e.g. IntelliJ)
 Just Run the project from IDE and type http://localhost:8080/ to your browser once the application is up and running
 
 #### Run Without IDE
-Will be added!
+You can build the application with using Apache Maven
+
+Download Maven: https://maven.apache.org/download.cgi
+
+Install Maven: https://maven.apache.org/install.html
+
++ After you complete installing Maven go inside the project folder and open a Command Prompt with Administrative Privileges and type the codes below with order:
+  * mvn test
+  * mvn clean install
++ Once they finished you will get a .jar file inside /ProjectFolder/target/
++ Run the .jar file and type http://localhost:8080/ to your browser
 
 ## Screenshots
 #### Home page where u can see all the movies that have been added
