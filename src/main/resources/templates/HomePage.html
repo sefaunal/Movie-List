@@ -1,0 +1,110 @@
+ <html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Movie List</title>
+    <link rel="stylesheet" href="/static/css/homestyle.css"/>
+    <link rel="shortcut icon" href="/static/images/fav-icon.png"/>
+
+    <!--==Import-poppins-font====================-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!--==Import-Monoton-Font====================-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    
+    <!--==Using-Font-Awesome======================-->
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    
+    </head>
+    <body>
+        <!--==Navigation===================================-->
+        <nav class="navigation">
+            <!--menu-btn--------------->
+            <input type="checkbox" class="menu-btn" id="menu-btn" th:if= "${user != null}">
+            <label for="menu-btn" class="menu-icon" th:if= "${user != null}">
+                <span class="nav-icon"></span>
+            </label>
+            <!--logo------------------->
+            <a th:if= "${user != null}" class="logo" href="/user/home">MOVIE LIST</a>
+            <a th:if= "${user == null}" class="logo" href="/guest/home">MOVIE LIST</a>
+            <!--menu------------------->
+            <ul class="menu" th:if= "${user != null}">
+                <li><a th:text="${'Welcome ' + user.getName()} + ' :)'"></a></li>
+                <br>
+                <li th:if= "${user.role == 'ADMIN' }"><a href="/admin/panel">Admin Panel</a></li>
+                <li><a href="/user/home">Home Screen</a></li>
+                <li><a href="/user/home/movie">Add Movie</a></li>
+                <li><a href="/user/home/actor">Add Actor</a></li>
+                <li><a href="/user/home/genre">Add Genre</a></li>
+                <li><a href="/user/home/language">Add Language</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+
+            <!--Search-box------------->
+            <span th:if= "${user == null}" class="copyright"><a href="/login">Click Here to Login</a></span>
+            <form action="/user/home/movie/search" method="get" class="search-box">
+                <!--input-->
+                <input type="text" name="searchParam" placeholder="Search Movie" class="search-input" required/>
+                <!--btn-->
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </nav>
+        <!--nav-end-->
+        
+        <!--==Latest-Movies==================================-->
+        <section id="latest">
+            <!--heading-------->
+            <div class="latest-heading">
+                <h1>Latest Movies</h1>
+            </div>
+
+            <!--container------->
+            <div class="post-container">
+                <!--post-box-1------------>
+                <div class="post-box" th:each="movies:${Movie}">
+                    <!--img-->
+                    <div class="post-img">
+                        <img alt="" th:src="*{'data:image/png;base64,'+ movies.getMovieImage()}"/>
+                    </div>
+
+                    <!--text---------->
+                <div class="main-slider-text">
+                    <!--quality----->
+                    <span class="quality" th:text="${movies.getMovieReleaseDate()}">2020</span>
+                    <!--bottom-text-->
+                    <div class="bottom-text">
+                        <!--name----->
+                        <div class="movie-name">
+                            <a th:href="@{/user/home/movie/details(movieID=${movies.getMovieID()})}" th:text="${movies.getMovieName()}">Venom: Let There Be Carnage</a>
+                        </div>
+                        <!--Category-and-rating---->
+                        <div class="category-rating">
+                            <!--rating--->
+                            <div class="rating" th:text="${movies.getMovieRating()}">0.0 </div>
+                            <div class="rating"><img alt="imbd" src="/static/images/IMDb-icon.png"/></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!--container-end--->
+        </section>
+        <!--latest-post-end------->
+
+        <footer>
+            <!--copyright----->
+            <span class="copyright">
+            2022 - Movie List
+        </span>
+
+        </footer>
+    </body>
+    </html>

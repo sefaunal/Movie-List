@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/homestyle.css"/>
+    <meta charset="UTF-8">
+    <title>Actors</title>
+    <link rel="shortcut icon" href="/static/images/fav-icon.png"/>
+
+    <!--==Import-poppins-font====================-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <!--==Import-Monoton-Font====================-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+
+    <!--==Using-Font-Awesome======================-->
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<body>
+
+<nav class="navigation">
+    <!--menu-btn--------------->
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon">
+        <span class="nav-icon"></span>
+    </label>
+    <!--logo------------------->
+    <section class="screenshotsNew">
+        <strong>Actors</strong>
+    </section>
+
+    <!--menu------------------->
+    <ul class="menu">
+        <li><a href="/admin/panel">Admin Panel</a></li>
+        <li><a href="/user/home">Home Screen</a></li>
+        <li><a href="/user/home/movie">Add Movie</a></li>
+        <li><a href="/user/home/actor">Add Actor</a></li>
+        <li><a href="/user/home/genre">Add Genre</a></li>
+        <li><a href="/user/home/language">Add Language</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<section id="latest">
+    <div class="latest-heading">
+        <table class="content-table" style="border:1px solid black;margin-left:auto;margin-right:auto;">
+            <thead>
+            <tr>
+                <th>MovieID</th>
+                <th>Name</th>
+                <th>Release Date</th>
+                <th>IMDB Rating</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="movie:${movies}">
+                <td th:text="${movie.getMovieID()}">ID</td>
+                <td th:text="${movie.getMovieName()}">Name</td>
+                <td th:text="${movie.getMovieReleaseDate()}">Name</td>
+                <td th:text="${movie.getMovieRating()}">Name</td>
+                <td><a th:href="@{/admin/panel/movies/update(id=${movie.getMovieID()})}">Update</a></td>
+                <td><a th:href="@{/admin/panel/movies/delete(id=${movie.getMovieID()})}">Delete</a></td>
+                <td><a th:href="@{/user/home/movie/details(movieID=${movie.getMovieID()})}">Details</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+</body>
+</html>

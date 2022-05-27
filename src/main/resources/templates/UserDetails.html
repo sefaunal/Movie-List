@@ -1,0 +1,116 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title th:text="${user.getName()}"></title>
+
+  <link rel="shortcut icon" href="/static/images/fav-icon.png"/>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/homestyle.css"/>
+
+  <!--==Import-poppins-font====================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+  <!--==Import-Monoton-Font====================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+
+  <!--==Using-Font-Awesome======================-->
+  <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navigation">
+  <!--menu-btn--------------->
+  <input type="checkbox" class="menu-btn" id="menu-btn">
+  <label for="menu-btn" class="menu-icon">
+    <span class="nav-icon"></span>
+  </label>
+  <!--logo------------------->
+  <section class="screenshotsNew">
+    <strong>Users</strong>
+  </section>
+
+  <!--menu------------------->
+  <ul class="menu">
+    <li><a href="/admin/panel">Admin Panel</a></li>
+    <li><a href="/user/home">Home Screen</a></li>
+    <li><a href="/user/home/movie">Add Movie</a></li>
+    <li><a href="/user/home/actor">Add Actor</a></li>
+    <li><a href="/user/home/genre">Add Genre</a></li>
+    <li><a href="/user/home/language">Add Language</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+</nav>
+
+<section id="latest">
+  <!--heading-------->
+  <div class="latest-heading">
+    <h1 th:text="${'Name: ' + user.getName()}">Name</h1>
+  </div>
+</section>
+
+<section id="latest">
+  <!--heading-------->
+  <div class="latest-heading">
+    <h1 th:text="${'Mail: ' + user.getMail()}">Mail</h1>
+  </div>
+</section>
+
+<section id="latest">
+  <!--heading-------->
+  <div class="latest-heading">
+    <h1 th:text="${'Role: ' + user.getRole()}">Role</h1>
+  </div>
+</section>
+
+<section id="latest">
+  <!--heading-------->
+  <div class="latest-heading">
+    <h1 th:text="${'Creation Date: ' + user.getCreationDate()}">Creation Date</h1>
+  </div>
+</section>
+
+
+<!-- Main Body -->
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 col-md-6 col-12 pb-4">
+
+        <section class="screenshots">
+          <strong>Comments</strong>
+        </section>
+
+        <div class="comment mt-4 text-justify float-left" th:each="comment:${comments}">
+          <img th:if="${comment.getUser().getUserImage() != null}" th:src="*{'data:image/png;base64,'+ comment.getUser().getUserImage()}" alt="" class="rounded-circle" width="40" height="40">
+          <h6 th:text="${comment.getUser().getName()}">Name</h6>
+          <span th:text="${comment.getCommentDate()}">Date</span>
+          <br>
+          <p th:text="${comment.getCommentContext()}">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+
+          <a th:href="@{/user/home/movie/details(movieID=${comment.getMovie().getMovieID()})}" th:text="${comment.getMovie().getMovieName()}">Movie Name</a>
+          <br>
+          <br>
+          <a th:href="@{/admin/panel/users/details/comment/delete(commentID=${comment.getCommentID()})}">Delete Comment</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="copyright">2022 - Movie List</span>
+</footer>
+</body>
+</html>
+
